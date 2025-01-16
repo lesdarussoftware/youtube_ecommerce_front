@@ -1,22 +1,17 @@
-import { useEffect } from "react";
-import { useProducts } from "./hooks/useProducts"
-import { Product } from "./utils/types";
-import { ProductCard } from "./components/ProductCard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Products } from "./pages/Products";
+import { Categories } from "./pages/Categories";
 
 function App() {
-
-  const { products, getProducts } = useProducts();
-
-  useEffect(() => {
-    getProducts();
-  }, [])
-
   return (
-    <div>
-      <h1>Lesdarus Software</h1>
-      <h2>Tienda virtual</h2>
-      {products.map((product: Product) => <ProductCard key={product.id} product={product} />)}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/productos" element={<Products />} />
+        <Route path="/categorias" element={<Categories />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
